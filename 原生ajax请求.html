@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // get请求
+        // 构建XMLHttpRequest对象
+        var xhr = new XMLHttpRequest();
+
+        // 向远程主机发出一个HTTP请求
+
+        xhr.open("get", "http://localhost:8000/admin/article_count");
+
+        xhr.send(); //null或者空
+
+        // 就等待远程主机做出回应。
+        // 这时需要监控XMLHttpRequest对象的状态变化，指定回调函数。
+        xhr.onreadystatechange = function () {
+            //  xhr.readyState：XMLHttpRequest对象的状态，等于4表示数据已经接收完毕。
+            //  xhr.status：服务器返回的状态码，等于200表示一切正常。
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                //这里返回的可能是JSON字符串，需要自行对其进行处理
+                var res = JSON.parse(xhr.responseText);
+                console.log(res);
+            }
+        }
+
+
+        // post请求
+        // 构建XMLHttpRequest对象
+        var xhr1 = new XMLHttpRequest();
+        // 向远程发出一个http请求
+
+        xhr1.open("post", "http://localhost:8000/admin/login");
+        // post请求必须加一个请求头
+        xhr1.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+        // post请求的数据需放在send里面发送
+        xhr1.send("user_name=admin&password=123456");
+
+        xhr1.onreadystatechange = function () {
+            if (xhr1.readyState == 4 && xhr1.status == 200) {
+                console.log(xhr1.responseText);
+            }
+        }
+
+
+        /*
+        get和post请求的区别：1.get请求主要用来获取数据信息，post主要用来修改服务端数据
+                            2.get请求谢艾的数据接在地址栏后面，不安全，post请求的数据携带在请求体里
+                            3.get请求会有缓存，但是post请求不会被缓存。
+        
+
+        状态码： xhr.status：服务器返回的状态码，等于200表示一切正常。
+                200-300都是请求成功
+                302重定向
+                404找不到，可能是路径错误
+                400的错误，是请求参数不正确
+                401是没有权限
+                500以上是服务器错误，后台的问题
+
+        JSON对象和JSON字符串的字符相互转换： JSON字符串转对象---JSON.parse（字符串） 
+                                         JSON对象转字符串---JSON.stringfy(对象)    
+        
+        
+        jquery的ajax
+
+        $.ajax({
+            type:"get/post", //默认为get
+            url:"地址"，
+            data:{
+                数据1：值1，
+                数据2：值2
+            }，
+            success:function(res){
+                console.log(res);
+            }
+        })
+        */
+    </script>
+
+</body>
+
+</html>

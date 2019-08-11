@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var url = "http://localhost:8000/admin/login?name=xiaoweiguo&age=23&hobby=basketball"
+        // 封装函数
+        urlToObj(url);
+
+        function urlToObj(url) {
+
+            var arr = (url.split("?")[1].split("&"));
+            var obj = {};
+            for (var i = 0; i < arr.length; i++) {
+                obj[arr[i].split("=")[0]] = arr[i].split("=")[1]
+            }
+            console.log(obj);
+        }
+
+        //通过js实现获取地址栏中的参数并且转成对象
+        //         var url = "http://localhost:8000/admin/login?name=xiaoweiguo&age=23&hobby=basketball"
+        //             console.log(url.split("?")[1].split("&")); // ["name=xiaoweiguo", "age=23", "hobby=basketball"]
+        //             var arr = (url.split("?")[1].split("&"));
+        //             var obj = {};
+        //             for (var i = 0; i < arr.length; i++) {
+        //                 obj[arr[i].split("=")[0]] = arr[i].split("=")[1]
+        //             }
+        //             console.log(obj);
+
+        //             /*
+        //         var obj = {};//用来存放获取到所填写的信息
+
+
+        // 必备知识:
+        // 对象属性的自动添加
+        //  　　   btn.onclick = function(){
+        //              var city = input_city.value;
+        //              var num = input_num.value;
+        //              obj[city] = num;//利用方括号法添加属性和属性值            
+        //          }
+        //         obj.key=value;//这种不可以动态添加属性的名称 
+        //         */
+    </script>
+
+</body>
+
+</html>
